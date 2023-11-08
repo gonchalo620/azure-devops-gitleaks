@@ -13,9 +13,6 @@ paths = [
     '''pnpm-lock.yaml''',
     '''Database.refactorlog''',
     '''vendor''',
-    '''UDMSecretChecks.toml''',
-    '''UDMSecretChecksv8.toml''',
-    '''GitleaksUdmCombo.toml'''
 ]
 
 [[rules]]
@@ -2139,6 +2136,15 @@ keywords = [
 ]
 
 [[rules]]
+id = "infracost-api-token"
+description = "Infracost API Token"
+regex = '''(?i)\b(ico-[a-zA-Z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+secretGroup = 1
+keywords = [
+    "ico-",
+]
+
+[[rules]]
 id = "intercom-api-key"
 description = "Intercom API Token"
 regex = '''(?i)(?:intercom)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{60})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
@@ -2735,10 +2741,10 @@ keywords = [
 [[rules]]
 id = "snyk-api-token"
 description = "Snyk API token"
-regex = '''(?i)(?:snyk)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+regex = '''(?i)(?:snyk_token|snyk_key|snyk_api_token|snyk_api_key|snyk_oauth_token)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
 secretGroup = 1
 keywords = [
-    "snyk",
+    "snyk_token","snyk_key","snyk_api_token","snyk_api_key","snyk_oauth_token",
 ]
 
 [[rules]]
@@ -2761,7 +2767,7 @@ keywords = [
 [[rules]]
 id = "stripe-access-token"
 description = "Stripe Access Token"
-regex = '''(?i)(sk|pk)_(test|live)_[0-9a-z]{10,32}'''
+regex = '''(?i)\b((sk|pk)_(test|live)_[0-9a-z]{10,32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
 keywords = [
     "sk_test","pk_test","sk_live","pk_live",
 ]
